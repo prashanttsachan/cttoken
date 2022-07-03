@@ -1,7 +1,7 @@
 {
-  "name": "dapp-token-sale",
+  "name": "ciesta-token-sale",
   "version": "1.0.0",
-  "description": "Dapp Token Sale ICO",
+  "description": "CTToken Sale ICO",
   "main": "truffle.js",
   "directories": {
     "test": "test"

@@ -1,9 +1,10 @@
-pragma solidity ^0.4.2;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.15;
 
-contract DappToken {
-    string  public name = "DApp Token";
-    string  public symbol = "DAPP";
-    string  public standard = "DApp Token v1.0";
+contract CTToken {
+    string  public name = "CTCoin";
+    string  public symbol = "CTTK";
+    string  public standard = "Ciesta Token v1.0";
     uint256 public totalSupply;
 
     event Transfer(
@@ -21,7 +22,7 @@ contract DappToken {
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
 
-    function DappToken (uint256 _initialSupply) public {
+    constructor (uint256 _initialSupply) {
         balanceOf[msg.sender] = _initialSupply;
         totalSupply = _initialSupply;
     }
@@ -32,7 +33,7 @@ contract DappToken {
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
 
-        Transfer(msg.sender, _to, _value);
+        emit Transfer(msg.sender, _to, _value);
 
         return true;
     }
@@ -40,7 +41,7 @@ contract DappToken {
     function approve(address _spender, uint256 _value) public returns (bool success) {
         allowance[msg.sender][_spender] = _value;
 
-        Approval(msg.sender, _spender, _value);
+        emit Approval(msg.sender, _spender, _value);
 
         return true;
     }
@@ -54,7 +55,7 @@ contract DappToken {
 
         allowance[_from][msg.sender] -= _value;
 
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
 
         return true;
     }
